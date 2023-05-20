@@ -33,7 +33,7 @@ let options = {
         "snowdrop",
         "violet"
     ]
-};
+}
 
 // Count 
 let winCount = 0;
@@ -53,3 +53,26 @@ const displayOptions = () => {
     optionsContainer.appendChild(buttonCon);
 }
 
+// Word generator
+const generateWord = (optionValue) => {
+    let optionsButtons = document.querySelectorAll(".options");
+
+    // If optionValue matches the button innerText then highlight the button
+    optionsButtons.forEach((button) => {
+        if (button.innerText.toLowerCase() === optionValue) {
+            button.classList.add("active");
+        }
+        button.disabled = true;
+    })
+}
+
+// Initial function (called when page loads/user press new game )
+const initializer = () => {
+    winCount = 0;
+    count = 0;
+    displayOptions();
+}
+
+// New game 
+newGameButton.addEventListener("click", initializer);
+window.onload = initializer;
