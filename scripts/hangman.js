@@ -53,6 +53,25 @@ const displayOptions = () => {
     optionsContainer.appendChild(buttonCon);
 }
 
+// Block all the buttons
+const blocker = () => {
+    let optionsButtons = document.querySelectorAll(".options");
+    let letterButtons = document.querySelectorAll(".letters")
+
+    // Disable all options
+    optionsButtons.forEach((button) => {
+        button.disabled = true;
+    });
+
+
+    // Disable all letters
+    letterButtons.forEach((button) => {
+        button.disabled = true;
+    });
+
+    newGameContainer.classList.remove("hide");
+}
+
 // Word generator
 const generateWord = (optionValue) => {
     let optionsButtons = document.querySelectorAll(".options");
@@ -63,7 +82,18 @@ const generateWord = (optionValue) => {
             button.classList.add("active");
         }
         button.disabled = true;
-    })
+    });
+
+    // Initially hide letters, clear previous word
+    letterContainer.classList.remove("hide");
+    userInputSection.innerText = "";
+
+    let optionArray = options[optionValue];
+
+    // Choose random word
+    chosenWord = optionArray[Math.floor(Math.random() * optionArray.length)];
+    chosenWord = chosenWord.toUpperCase();
+    console.log(chosenWord);
 }
 
 // Initial function (called when page loads/user press new game )
