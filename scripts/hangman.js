@@ -93,7 +93,6 @@ const generateWord = (optionValue) => {
     // Choose random word
     chosenWord = optionArray[Math.floor(Math.random() * optionArray.length)];
     chosenWord = chosenWord.toUpperCase();
-    console.log(chosenWord);
 
     // Replace every letter with span containing dash
     let displayItem = chosenWord.replace(/./g, '<span class="dashes">_</span>');
@@ -151,7 +150,7 @@ const initializer = () => {
             else {
                 // Lose count 
                 count += 1;
-               
+                drawMan(count);
                 // Count === 6 (because head,body,left arm, right arm,left leg,right leg)
                 if (count === 6) {
                     resultText.innerHTML = `<h2 class='lose-msg'>You Lose!!!</h2><p>The word was <span>${chosenWord}</span></p>`;
@@ -167,7 +166,7 @@ const initializer = () => {
     displayOptions();
 
     // Call to canvasCreator (for clearing previous canvas and creating initial canvas)
-    let {initialDrawing} = canvasCreator;
+    let { initialDrawing } = canvasCreator();
     // initialDrawing would draw the frame
     initialDrawing();
 };
@@ -182,32 +181,26 @@ const canvasCreator = () => {
     // For drawing lines
     const drawLine = (fromX, fromY, toX, toY) => {
         context.moveTo(fromX, fromY);
-        context.line(toX, toY);
+        context.lineTo(toX, toY);
         context.stroke();
     };
-
     const head = () => {
         context.beginPath();
         context.arc(70, 30, 10, 0, Math.PI * 2, true);
         context.stroke();
     };
-
     const body = () => {
         drawLine(70, 40, 70, 80);
     };
-
     const leftArm = () => {
         drawLine(70, 50, 50, 70);
     };
-
     const rightArm = () => {
         drawLine(70, 50, 90, 70);
     };
-
     const leftLeg = () => {
         drawLine(70, 80, 50, 110);
     };
-
     const rightLeg = () => {
         drawLine(70, 80, 90, 110);
     };
@@ -215,7 +208,7 @@ const canvasCreator = () => {
     // Initial frame
     const initialDrawing = () => {
         // Clear canvas 
-        context.clearRact(0, 0, context.canvas.width, context.canvas.height);
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
         // Bottom line
         drawLine(10, 130, 130, 130);
@@ -230,7 +223,34 @@ const canvasCreator = () => {
         drawLine(70, 10, 70, 20);
     };
 
-    return {initialDrawing, head, body, leftArm, rightArm, leftLeg, rightLeg};
+    return { initialDrawing, head, body, leftArm, rightArm, leftLeg, rightLeg };
+};
+
+// Draw the man
+const drawMan = (count) => {
+    let { head, body, leftArm, rightArm, leftLeg, rightLeg } = canvasCreator();
+    switch (count) {
+        case 1:
+            head();
+            break;
+        case 2:
+            body();
+            break;
+        case 3:
+            leftArm();
+            break;
+        case 4:
+            rightArm();
+            break;
+        case 5:
+            leftLeg();
+            break;
+        case 6:
+            rightLeg();
+            break;
+        default:
+            break;
+    }
 };
 
 // New game 

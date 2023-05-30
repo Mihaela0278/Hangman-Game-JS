@@ -49,7 +49,7 @@ body {
     background-color: #efefef;
 }
 
-#options-container button.active, #options-container button:hover {
+#options-container button.active, #options-container button:hover, #new-game-btn:hover, #letter-container button:hover {
     background-color: #8046f3f5;
     border: 3px solid #000000;
     color: #f7f2f2;
@@ -80,7 +80,6 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    right: 0;
     height: 100%;
     width: 100%;
     display: flex;
@@ -100,8 +99,8 @@ body {
 canvas {
     display: block;
     margin: auto;
-    border: 7px solid #8046f3f5;
-    border-radius: 10px;
+    border: 4px solid #8046f3f5;
+    border-radius: 4px;
 }
 
 .hide {
@@ -125,9 +124,9 @@ canvas {
 #new-game-btn {
     font-size: 1.25em;
     padding: 0.5em 1em;
-    background-color: #8c52ff;
+    background-color: #cbc6c6;
     border: 3px solid #000000;
-    color: #fff;
+    color: #ffffff;
     border-radius: 0.5em 5.7em;
 }
 
